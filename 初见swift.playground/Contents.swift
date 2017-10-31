@@ -362,7 +362,8 @@ let aceRawValue = ace.rawValue
 //使用init?(rawValue:)初始化构造器在原始值和枚举值之间进行转换。
 
 if let convertedRank = Rank(rawValue: 3) {
-    let threeDescription = convertedRank.simpleDescription()
+//    let threeDescription = convertedRank.simpleDescription()  //fix之后为下面的代码
+    _ = convertedRank.simpleDescription()
 }
 //枚举的成员值是实际值，并不是原始值的另一种表达方法。实际上，如果没有比较有意义的原始值，你就不需要提供原始值。
 
@@ -401,7 +402,8 @@ let failure = ServerResponse.Failure("Out of cheese.")
 
 switch success {
 case let .Result(sunrise, sunset):
-    let serverResponse = "Sunrise is at \(sunrise) and sunset is at \(sunset)."
+    _ = "Sunrise is at \(sunrise) and sunset is at \(sunset)."
+//    let serverResponse = "Sunrise is at \(sunrise) and sunset is at \(sunset)."源代码如此
 case let .Failure(message):
     print("Failure...  \(message)")
 }
