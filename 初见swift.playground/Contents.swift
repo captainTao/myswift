@@ -114,7 +114,7 @@ var total = 0
 for i in 0..<4 { //(0,4)
     total += i
 }
-print(total) //6
+print(total) //6,  1+2+3
 
 var totl = 0
 for i in 1...4 {  //[1,4]

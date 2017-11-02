@@ -131,3 +131,102 @@ var a = 1
 a += 2
 //复合赋值运算没有返回值，let b = a += 2这类代码是错误
 
+//三目运算符
+let contentHeight = 40
+let hasHeader = true
+let rowHeight = contentHeight + (hasHeader ? 50 : 20)// rowHeight 现在是 90
+
+//空合运算：
+let defaultColorName = "red"
+var userDefinedColorName: String?   //默认值为 nil
+var colorNameToUse = userDefinedColorName ?? defaultColorName //第一个值为空，取第二个值
+// userDefinedColorName 的值为空，所以 colorNameToUse 的值为 "red"
+
+userDefinedColorName = "green"
+colorNameToUse = userDefinedColorName ?? defaultColorName //第一个非空，则取第一个
+// userDefinedColorName 非空，因此 colorNameToUse 的值为 "green"
+
+// 两个字符串均为空并等价。
+var emptyString = ""               // 空字符串字面量
+var anotherEmptyString = String()  // 初始化方法
+
+//通过isEmpty属性来判断该字符串是否为空
+if emptyString.isEmpty {
+    print("Nothing to see here")
+}
+//.characters属性来获取每一个字符的值
+for character in "Dog!🐶".characters { //测试这儿也可以不用.characters
+    print(character)
+}
+//连接字符： +，  +=
+let string1 = "hello"
+let string2 = " there"
+var welcome = string1 + string2
+
+var instruction = "look over"
+instruction += string2  // instruction 现在等于 "look over there"
+
+//append()方法将一个字符附加到一个字符串变量的尾部：
+let exclamationMark: Character = "!"
+welcome.append(exclamationMark)   // welcome 现在等于 "hello there!"
+
+//变量前加\变成字符串
+let multiplier = 3
+let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"  //这儿必须把int转换为Double
+// message 是 "3 times 2.5 is 7.5"
+
+//转义字符\0(空字符)、\\(反斜线)、\t(水平制表符)、\n(换行符)、\r(回车符)、\"(双引号)、\'(单引号)。
+let wiseWords = "\"Imagination is more important than knowledge\" - Einstein" // "Imageination is more important than knowledge" - Enistein
+//\u： unicode标量
+let dollarSign = "\u{24}"             // $, Unicode 标量 U+0024
+let blackHeart = "\u{2665}"           // ♥, Unicode 标量 U+2665
+let sparklingHeart = "\u{1F496}"      // 💖, Unicode 标量 U+1F496
+
+//计算字符串的长度
+var word = "cafe"
+print("the number of characters in \(word) is \(word.characters.count)")  //可以直接用word.count
+// 打印输出 "the number of characters in cafe is 4"
+
+word += "\u{301}"    // COMBINING ACUTE ACCENT, U+0301
+print("the number of characters in \(word) is \(word.characters.count)")
+// 打印输出 "the number of characters in café is 4"
+
+//字符串下标 String.Index
+//总结：startindex和endIndex的用法不一样
+let greeting = "Guten Tag!"
+greeting.startIndex //string.index, 目前看样子不是一个数字，暂且当一个数字
+greeting[greeting.startIndex]// G
+//greeting[greeting.index(greeting.startIndex)]//这样写会报错
+//greeting[greeting.endIndex] // error 使用endIndex属性可以获取最后一个Character的后一个位置的索引
+//greeting.index(after: endIndex) // error
+
+greeting.index(before: greeting.endIndex) //String.index
+greeting[greeting.index(before: greeting.endIndex)]// !
+greeting[greeting.index(after: greeting.startIndex)]// u
+
+let index = greeting.index(greeting.startIndex, offsetBy: 7)
+greeting[index] // a
+
+//插入和删除
+//调用 insert(_:at:) 方法可以在一个字符串的指定索引插入一个字符；
+//调用 insert(contentsOf:at:) 方法可以在一个字符串的指定索引插入一个段字符串。
+
+var welcom = "hello"
+welcom.insert("!", at: welcom.endIndex) // welcom 变量现在等于 "hello!"
+
+welcom.insert(contentsOf: "there".characters, at: welcom.index(before: welcom.endIndex))
+//welcom.insert(contentsOf: "there", at: welcom.index(before: welcom.endIndex))，也可以这样写
+// welcom 变量现在等于 "hello there!"
+
+//调用 remove(at:) 方法可以在一个字符串的指定索引删除一个字符
+//调用 removeSubrange(_:) 方法可以在一个字符串的指定索引删除一个子字符串。
+
+welcom.remove(at: welcom.index(before: welcom.endIndex)) //返回的值为"!"
+print(welcom)
+// welcom 现在等于 "hello there"
+
+let range = welcom.index(welcom.endIndex, offsetBy: -6)..<welcom.endIndex
+welcom.removeSubrange(range)// welcom 现在等于 "hell"
+print(welcom)//hell
+//注意： 您可以使用 insert(_:at:)、insert(contentsOf:at:)、remove(at:) 和 removeSubrange(_:) 方法在任意一个确认的并遵循 RangeReplaceableCollection 协议的类型里面，如上文所示是使用在 String 中，您也可以使用在 Array、Dictionary 和 Set 中
+
