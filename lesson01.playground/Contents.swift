@@ -1,5 +1,7 @@
 //: Playground - noun: a place where people can play
 
+//接受用户的输入可以使用 readLine():
+let theInput = readLine()
 //变量声明：
 var x = 0.0, y = 0.0, z = 0.0
 //类型标注：
@@ -40,9 +42,10 @@ let paddedDouble = 000123.456
 let oneMillion = 1_000_000
 let justOverOneMillion = 1_000_000.000_000_1
 
+//两不同类型不能直接相加，要先进行转换
 let twoThousand: UInt16 = 2_000
 let one: UInt8 = 1
-let twoThousandAndOne = twoThousand + UInt16(one)//两不同类型不能直接相加，要先进行转换
+let twoThousandAndOne = twoThousand + UInt16(one)
 
 //类型转换
 let pi = 3.141592653
@@ -155,7 +158,7 @@ if emptyString.isEmpty {
     print("Nothing to see here")
 }
 //.characters属性来获取每一个字符的值
-for character in "Dog!🐶".characters { //测试这儿也可以不用.characters
+for character in "Dog!🐶" { //测试这儿也可以不用.characters
     print(character)
 }
 //连接字符： +，  +=
@@ -182,13 +185,13 @@ let dollarSign = "\u{24}"             // $, Unicode 标量 U+0024
 let blackHeart = "\u{2665}"           // ♥, Unicode 标量 U+2665
 let sparklingHeart = "\u{1F496}"      // 💖, Unicode 标量 U+1F496
 
-//计算字符串的长度
+//计算字符串的长度.count
 var word = "cafe"
-print("the number of characters in \(word) is \(word.characters.count)")  //可以直接用word.count
+print("the number of characters in \(word) is \(word.count)")  //可以直接用word.count
 // 打印输出 "the number of characters in cafe is 4"
 
 word += "\u{301}"    // COMBINING ACUTE ACCENT, U+0301
-print("the number of characters in \(word) is \(word.characters.count)")
+print("the number of characters in \(word) is \(word.count)")
 // 打印输出 "the number of characters in café is 4"
 
 //字符串下标 String.Index
@@ -196,9 +199,12 @@ print("the number of characters in \(word) is \(word.characters.count)")
 let greeting = "Guten Tag!"
 greeting.startIndex //string.index, 目前看样子不是一个数字，暂且当一个数字
 greeting[greeting.startIndex]// G
-//greeting[greeting.index(greeting.startIndex)]//这样写会报错
-//greeting[greeting.endIndex] // error 使用endIndex属性可以获取最后一个Character的后一个位置的索引
+
+//试图获取越界索引对应的 Character，将引发一个运行时错误
+//greeting[greeting.endIndex] // error
 //greeting.index(after: endIndex) // error
+
+//greeting[greeting.index(greeting.startIndex)]//这样写会报语法错误，需要before, after,offset
 
 greeting.index(before: greeting.endIndex) //String.index
 greeting[greeting.index(before: greeting.endIndex)]// !
@@ -207,6 +213,7 @@ greeting[greeting.index(after: greeting.startIndex)]// u
 let index = greeting.index(greeting.startIndex, offsetBy: 7)
 greeting[index] // a
 
+
 //插入和删除
 //调用 insert(_:at:) 方法可以在一个字符串的指定索引插入一个字符；
 //调用 insert(contentsOf:at:) 方法可以在一个字符串的指定索引插入一个段字符串。
@@ -214,7 +221,7 @@ greeting[index] // a
 var welcom = "hello"
 welcom.insert("!", at: welcom.endIndex) // welcom 变量现在等于 "hello!"
 
-welcom.insert(contentsOf: "there".characters, at: welcom.index(before: welcom.endIndex))
+welcom.insert(contentsOf: "there", at: welcom.index(before: welcom.endIndex))
 //welcom.insert(contentsOf: "there", at: welcom.index(before: welcom.endIndex))，也可以这样写
 // welcom 变量现在等于 "hello there!"
 
@@ -229,4 +236,7 @@ let range = welcom.index(welcom.endIndex, offsetBy: -6)..<welcom.endIndex
 welcom.removeSubrange(range)// welcom 现在等于 "hell"
 print(welcom)//hell
 //注意： 您可以使用 insert(_:at:)、insert(contentsOf:at:)、remove(at:) 和 removeSubrange(_:) 方法在任意一个确认的并遵循 RangeReplaceableCollection 协议的类型里面，如上文所示是使用在 String 中，您也可以使用在 Array、Dictionary 和 Set 中
+
+//字符串/字符可以用等于操作符(==)和不等于操作符(!=)
+//hasPrefix(_:)/hasSuffix(_:)方法来检查字符串是否拥有特定前缀/后缀
 
