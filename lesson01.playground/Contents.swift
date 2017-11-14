@@ -1,5 +1,7 @@
 //: Playground - noun: a place where people can play
 
+//变量和字符串：
+
 //接受用户的输入可以使用 readLine():
 let theInput = readLine()
 //变量声明：
@@ -79,8 +81,9 @@ print("The status message is \(http404Error.1)")
 let http200Status = (statusCode: 200, description: "OK")
 print("The status code is \(http200Status.statusCode)")// 输出 "The status code is 200"
 print("The status message is \(http200Status.description)")// 输出 "The status message is OK"
-print(http200Status.1)
+print(http200Status.1) //"OK"
 
+//缺省值
 var serverResponseCode: Int? = 404 // serverResponseCode 包含一个可选的 Int 值 404
 serverResponseCode = nil // serverResponseCode 现在不包含值
 var surveyAnswer: String? // surveyAnswer 被自动设置为 nil
@@ -90,6 +93,7 @@ if let firstNumber = Int("4"), let secondNumber = Int("42"), firstNumber < secon
     print("\(firstNumber) < \(secondNumber) < 100")
 }
 // 输出 "4 < 42 < 100"
+
 if let firstNumber = Int("4") {
     if let secondNumber = Int("42") {
         if firstNumber < secondNumber && secondNumber < 100 {
@@ -121,6 +125,7 @@ do {
     buyGroceries(ingredients)
 }
 */
+
 //断言：assert(_:_:file:line:)
 let age = -3
 assert(age <= 0, "A person's age cannot be less than zero")
