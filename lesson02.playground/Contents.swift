@@ -4,6 +4,8 @@
 //集合：Arrays、Sets和Dictionaries
 //（Arrays）是有序数据的集。集合（Sets）是无序无重复数据的集。字典（Dictionaries）是无序的键值对的集。
 
+//数组Arrays
+
 //创建数组,  .count计算数组长度
 var someInts = [Int]()
 print("someInts is of type [Int] with \(someInts.count) items.")
@@ -34,8 +36,7 @@ if shoppingList.isEmpty {
 } else {
     print("The shopping list is not empty.")
 }
-// 打印 "The shopping list is not empty."（shoppinglist 不是空的
-
+// 打印 "The shopping list is not empty."
 
 //.append()添加元素，+=添加元素
 shoppingList.append("Flour")
@@ -68,4 +69,47 @@ for (index, value) in shoppingList.enumerated() {
     print("Item \(String(index + 1)): \(value)")
 }
 
+//a == a(自反性)
+//a == b意味着b == a(对称性)
+//a == b && b == c意味着a == c(传递性)
 
+//集合Set
+//初始化一个空集
+var letters = Set<Character>()
+print("letters is of type Set<Character> with \(letters.count) items.")
+// 打印 "letters is of type Set<Character> with 0 items."
+
+//字面量创建
+var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
+//var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop", "Classical"]，重复元素会去重
+// favoriteGenres 被构造成含有三个初始值的集合
+
+//set类型推断
+var favoriteGenre: Set = ["Rock", "Classical", "Hip hop"]
+//.count  集合长度
+//.isEmpty  集合是否为空
+//.insert(_:)  添加新元素在结尾
+favoriteGenre.insert("Jazz")
+//.remove(_:)  删除最后一个元素，返回被删除的值
+favoriteGenre.remove("Rock")
+//.removeAll()  删除所有元素
+//.contains(_:)  检查Set中是否包含一个特定的值
+//遍历：for...in
+//排序：.sorted()
+
+//使用intersection(_:)交集
+//使用symmetricDifference(_:)方法根据在一个集合中但不在两个集合中的值创建一个新的集合。
+//使用union(_:)并集
+//使用subtracting(_:)差集
+let oddDigits: Set = [1, 3, 5, 7, 9]
+let evenDigits: Set = [0, 2, 4, 6, 8]
+let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+
+oddDigits.union(evenDigits).sorted()
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+oddDigits.intersection(evenDigits).sorted()
+// []
+oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
+// [1, 9]
+oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
+// [1, 2, 9]
