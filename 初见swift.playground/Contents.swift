@@ -111,13 +111,13 @@ print(m)
 
 //可以在循环中使用..<来表示范围;使用..<创建的范围不包含上界，如果想包含的话需要使用...。
 var total = 0
-for i in 0..<4 { //(0,4)
+for i in 0..<4 { //(0,4)开区间
     total += i
 }
 print(total) //6,  1+2+3
 
 var totl = 0
-for i in 1...4 {  //[1,4]
+for i in 1...4 {  //[1,4]闭区间
     totl += i
 }
 print(totl) //10
