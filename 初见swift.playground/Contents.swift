@@ -48,6 +48,7 @@ print(teamScore) //11
 //在if语句中，条件必须是一个布尔表达式——这意味着像if score { ... }这样的代码将报错，而不会隐形地与 0 做对比
 var optionalString: String? = "Hello"
 print(optionalString == nil) //false
+
 //可以一起使用if和let来处理值缺失的情况。这些值可由可选值来代表。一个可选的值是一个具体的值或者是nil以表示值缺失。在类型后面加一个问号来标记这个变量的值是可选的。
 var optionalName: String? = "captain"
 var greeting = "Hello!"
@@ -95,7 +96,7 @@ print(largest) //25
 print(lei) //square
 
 
-//repeat while和do.while的意思类似
+//repeat...while和do...while的意思类似
 var n = 2
 while n < 100 { //2^n<100，求出2^n,并且再*2；结果为64*2=128
     n = n * 2
@@ -233,7 +234,7 @@ class Shape {
 var shape = Shape()
 print(shape.numberOfSides) //10
 shape.numberOfSides = 7
-var shapeDescription = shape.simpleDescription()
+var shapeDescription = shape.simpleDescription() //"A shape with 7 sides."
 
 //类需要init初始化一些东西，like python
 class NamedShape {

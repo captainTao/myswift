@@ -292,7 +292,7 @@ default:
 //continue下面的例子把一个小写字符串中的元音字母和空格字符移除，生成了一个含义模糊的短句：
 let puzzleInput = "great minds think alike"
 var puzzleOutput = ""
-for character in puzzleInput.characters {
+for character in puzzleInput {
     switch character {
     case "a", "e", "i", "o", "u", " ":
         continue  //上面条件立即跳过这次循环
@@ -337,3 +337,48 @@ default:
 }
 print(description)
 // 输出 "The number 5 is a prime number, and also an integer."
+
+
+//带标签的语句，用lable
+//label name: while condition { statements }
+
+//像if，guard的执行取决于一个表达式的布尔值。不同于if语句，一个guard语句总是有一个else从句，如果条件不为真则执行else从句中的代码
+func greet(person: [String: String]) {
+    guard let name = person["name"] else {
+        return
+    }
+    print("Hello \(name)")
+    guard let location = person["location"] else {
+        print("I hope the weather is nice near you.")
+        return
+    }
+    print("I hope the weather is nice in \(location).")
+}
+greet(person: ["name": "John"])
+// 输出 "Hello John!"
+// 输出 "I hope the weather is nice near you."
+greet(person: ["name": "Jane", "location": "Cupertino"])
+// 输出 "Hello Jane!"
+// 输出 "I hope the weather is nice in Cupertino."
+
+//检测api可用性
+if #available(iOS 10, macOS 10.12, *) {
+    // 在 iOS 使用 iOS 10 的 API, 在 macOS 使用 macOS 10.12 的 API
+} else {
+    // 使用先前版本的 iOS 和 macOS 的 API
+}
+
+//元组：取对应的值
+let firstHighScore = ("Mary", 9001)
+print(firstHighScore.0) // Mary
+print(firstHighScore.1) // 9001
+
+let (firstName, firstScore) = firstHighScore
+print(firstName) // Mary
+print(firstScore) // 9001
+//print和println的区别:第一个不换行，第二个带换行
+
+let secondHighScore = (name: "James", score: 4096)
+print(secondHighScore.name)
+print(secondHighScore.score)
+
