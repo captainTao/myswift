@@ -2,6 +2,12 @@
 
 
 //函数
+func someFunction(firstParameterName: Int, secondParameterName: Int) {
+    // 在函数体内，firstParameterName 和 secondParameterName 代表参数中的第一个和第二个参数值
+}
+someFunction(firstParameterName: 1, secondParameterName: 2)
+
+//函数举例
 func greet(person: String) -> String {
     let greeting = "Hello, " + person + "!"
     return greeting
@@ -54,4 +60,17 @@ let bounds = minMax(array: [8, -6, 2, 109, 3, 71])
 print("min is \(bounds.min) and max is \(bounds.max)")
 // 打印 "min is -6 and max is 109"
 
-
+// 可选元组返回类型，返回可能为没有值
+func minMax(array: [Int]) -> (min: Int, max: Int)? {
+    if array.isEmpty { return nil }
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
